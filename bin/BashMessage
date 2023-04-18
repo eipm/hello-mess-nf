@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+##
+# publish parameters:
+#
+# postURL: endpoint of the KD instance to contact
+# topic: the topic where to publish the message
+# data: the data for the payload.
+#   format of data: "name1":"value1","name2":"value2","name3":"value3"
+##
+postURL=$1
+topic=$2
+shift 2
+data=$@
+
+post_data() {
+stamp=`date +"%Y-%m-%d %H:%M:%S"`
+host=`hostname`
+  cat <<EOF
+{
+  $data,
+  "MessageCreated": "${stamp}",
+  "MessageHostname": "${host}"
+}
+EOF
+}
+if [[ "${BASH_MESSAGING_ENABLED}" == "true" ]]; then
+    curl --header "Content-Type: text/plain" \
+        --request POST \
+         --data "$(post_data)"\
+         ${postURL}/${topic}
+fi
