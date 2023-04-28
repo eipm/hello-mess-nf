@@ -7,6 +7,7 @@ process SAYHELLOINITALIAN {
 
     input:
         path (previous_file)
+        val(dispatcherURL)
 
     output:
         path('italian.txt'), emit: italian_file
@@ -22,6 +23,7 @@ process SAYHELLOINFRENCH {
 
     input:
         path (previous_file)
+        val(dispatcherURL)
 
     output:
         path('french.txt'), emit: french_file
@@ -37,6 +39,7 @@ process SAYHELLOINSPANISH {
 
     input:
         path (previous_file)
+        val(dispatcherURL)
 
     output:
         path('spanish.txt'), emit: spanish_file
@@ -52,6 +55,7 @@ process SAYHELLOINENGLISH {
 
     input:
         path (previous_file)
+        val(dispatcherURL)
 
     output:
         path('english.txt'), emit: english_file

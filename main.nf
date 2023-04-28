@@ -37,13 +37,17 @@ PipelineMessage.started(workflow).forTopic("pipeline_hello_mess_nf")
 workflow SAYHELLOINSEVERALLANGUAGES {
     take:
         welcome
+        dispatcherURL
     main:
-        welcome | SAYHELLOINITALIAN | SAYHELLOINFRENCH | SAYHELLOINSPANISH | SAYHELLOINENGLISH
+        SAYHELLOINITALIAN(welcome, dispatcherURL)
+        SAYHELLOINFRENCH(SAYHELLOINITALIAN.out.italian_file, dispatcherURL)
+        SAYHELLOINSPANISH(SAYHELLOINFRENCH.out.french_file, dispatcherURL)
+        SAYHELLOINENGLISH(SAYHELLOINSPANISH.out.spanish_file, dispatcherURL)
     emit:
-        SAYHELLOINENGLISH.out
+        SAYHELLOINENGLISH.out.english_file
 }
 
 workflow {
- SAYHELLOINSEVERALLANGUAGES(Channel.fromPath 'welcome.txt')
+ SAYHELLOINSEVERALLANGUAGES(Channel.fromPath('welcome.txt'), Channel.value(params.dispatcherURL))
  SAYHELLOINSEVERALLANGUAGES.out | splitText | view
 }
