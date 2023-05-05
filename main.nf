@@ -31,8 +31,6 @@ ZeroMessInitializer.init(params.pipelineName,
         params.pipelineMessagingEnabled)
 
 log.info "Pipeline has started"
-PipelineMessage.started(workflow).forTopic("pipeline_hello_mess_nf")
-        .data('test', 'it works').send()
 
 workflow SAYHELLOINSEVERALLANGUAGES {
     take:
@@ -48,6 +46,11 @@ workflow SAYHELLOINSEVERALLANGUAGES {
 }
 
 workflow {
+ PipelineMessage.started(workflow).forTopic("pipeline_hello_mess_nf")
+        .data('message', 'Hope it works').send()
  SAYHELLOINSEVERALLANGUAGES(Channel.fromPath('welcome.txt'), Channel.value(params.dispatcherURL))
  SAYHELLOINSEVERALLANGUAGES.out | splitText | view
+ PipelineMessage.completed(workflow).forTopic("pipeline_hello_mess_nf")
+         .data('message', 'it worked!').send()
 }
+
