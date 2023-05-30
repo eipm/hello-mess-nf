@@ -3,7 +3,7 @@ import edu.cornell.eipm.messaging.zeromess.messages.*
 process SAYHELLOINITALIAN {
     beforeScript ProcessMessage.started('Italian').forTopic('Italian_started').buildCommand()
     afterScript ProcessMessage.completed('Italian').forTopic('Italian_completed').buildCommand()
-    container 'quay.io/nextflow/bash'
+    container 'ubuntu:23.10'
 
     input:
         path (previous_file)
@@ -19,7 +19,7 @@ process SAYHELLOINITALIAN {
 process SAYHELLOINFRENCH {
     beforeScript ProcessMessage.started('French').forTopic('French_started').buildCommand()
     afterScript ProcessMessage.completed('French').forTopic('French_completed').buildCommand()
-    container 'quay.io/nextflow/bash'
+    container 'ubuntu:23.10'
 
     input:
         path (previous_file)
@@ -35,7 +35,7 @@ process SAYHELLOINFRENCH {
 process SAYHELLOINSPANISH {
     beforeScript ProcessMessage.started('Spanish').forTopic('Spanish_started').buildCommand()
     afterScript ProcessMessage.completed('Spanish').forTopic('Spanish_completed').buildCommand()
-    container 'quay.io/nextflow/bash'
+    container 'ubuntu:23.10'
 
     input:
         path (previous_file)
@@ -51,7 +51,7 @@ process SAYHELLOINSPANISH {
 process SAYHELLOINENGLISH {
     beforeScript ProcessMessage.started('English').forTopic('English_started').buildCommand()
     afterScript ProcessMessage.completed('English').forTopic('English_completed').buildCommand()
-    container 'quay.io/nextflow/bash'
+    container 'ubuntu:23.10'
 
     input:
         path (previous_file)
