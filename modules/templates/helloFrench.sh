@@ -4,8 +4,8 @@ hello='Bonjour'
 output='french.txt'
 previous_file=!{previous_file}
 dispatcherURL=!{dispatcherURL}
-BashMessage ${dispatcherURL} 'helloFrench.process' '"status":"started"'
+BashMessage ${dispatcherURL} 'helloProcess' '"process":"HelloFrench"' '"status":"started"'
 cat ${previous_file} > $output
 echo "${hello} world!" >> $output
-BashMessage ${dispatcherURL} 'helloFrench.process' '"status":"completed"'
+BashMessage ${dispatcherURL} 'helloProcess' '"process":"HelloFrench"' '"status":"completed"'
 

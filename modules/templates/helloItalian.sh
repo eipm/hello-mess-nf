@@ -5,7 +5,7 @@ hello='Ciao'
 output='italian.txt'
 previous_file=!{previous_file}
 dispatcherURL=!{dispatcherURL}
-BashMessage ${dispatcherURL} 'helloItalian.process' '"status":"started"'
+BashMessage ${dispatcherURL} 'helloProcess' '"process":"HelloItalian"' '"status":"started"'
 cat ${previous_file} > $output
 echo "${hello} world!" >> $output
-BashMessage ${dispatcherURL} 'helloItalian.process' '"status":"completed"'
+BashMessage ${dispatcherURL} 'helloProcess' '"process":"HelloItalian"' '"status":"completed"'

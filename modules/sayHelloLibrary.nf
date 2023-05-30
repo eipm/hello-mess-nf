@@ -1,8 +1,8 @@
 import edu.cornell.eipm.messaging.zeromess.messages.*
 
 process SAYHELLOINITALIAN {
-    beforeScript ProcessMessage.started('Italian').forTopic('Italian_started').buildCommand()
-    afterScript ProcessMessage.completed('Italian').forTopic('Italian_completed').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINITALIAN').forTopic('beforeProcess').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINITALIAN').forTopic('afterProcess').buildCommand()
     container 'ubuntu:23.10'
 
     input:
@@ -17,8 +17,8 @@ process SAYHELLOINITALIAN {
 }
 
 process SAYHELLOINFRENCH {
-    beforeScript ProcessMessage.started('French').forTopic('French_started').buildCommand()
-    afterScript ProcessMessage.completed('French').forTopic('French_completed').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINFRENCH').forTopic('beforeProcess').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINFRENCH').forTopic('afterProcess').buildCommand()
     container 'ubuntu:23.10'
 
     input:
@@ -33,8 +33,8 @@ process SAYHELLOINFRENCH {
 }
 
 process SAYHELLOINSPANISH {
-    beforeScript ProcessMessage.started('Spanish').forTopic('Spanish_started').buildCommand()
-    afterScript ProcessMessage.completed('Spanish').forTopic('Spanish_completed').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINSPANISH').forTopic('beforeProcess').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINSPANISH').forTopic('afterProcess').buildCommand()
     container 'ubuntu:23.10'
 
     input:
@@ -49,8 +49,8 @@ process SAYHELLOINSPANISH {
 }
 
 process SAYHELLOINENGLISH {
-    beforeScript ProcessMessage.started('English').forTopic('English_started').buildCommand()
-    afterScript ProcessMessage.completed('English').forTopic('English_completed').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINENGLISH').forTopic('beforeProcess').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINENGLISH').forTopic('afterProcess').buildCommand()
     container 'ubuntu:23.10'
 
     input:
