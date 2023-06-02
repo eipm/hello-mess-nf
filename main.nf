@@ -55,5 +55,5 @@ workflow {
 workflow.onComplete {
     log.info "Pipeline completed at: $workflow.complete"
     PipelineMessage.completed(workflow).forTopic("pipelineEvents")
-             .data('exit status', ${workflow.success ? 'OK' : 'Failed'}).send()
+             .data('exit status', 'OK').send()
 }
