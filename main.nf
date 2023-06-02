@@ -35,21 +35,18 @@ log.info "Pipeline has started"
 workflow SAYHELLOINSEVERALLANGUAGES {
     take:
         welcome
-        dispatcherURL
     main:
-        SAYHELLOINITALIAN(welcome, dispatcherURL)
-        SAYHELLOINFRENCH(SAYHELLOINITALIAN.out.italian_file, dispatcherURL)
-        SAYHELLOINSPANISH(SAYHELLOINFRENCH.out.french_file, dispatcherURL)
-        SAYHELLOINENGLISH(SAYHELLOINSPANISH.out.spanish_file, dispatcherURL)
+        welcome | SAYHELLOINITALIAN | SAYHELLOINFRENCH | SAYHELLOINSPANISH | SAYHELLOINENGLISH
     emit:
         SAYHELLOINENGLISH.out.english_file
 }
 
 workflow {
- PipelineMessage.started(workflow).forTopic("pipelineEvents")
+    PipelineMessage.started(workflow).forTopic("pipelineEvents")
         .data('message', 'Hope it works').send()
- SAYHELLOINSEVERALLANGUAGES(Channel.fromPath('welcome.txt'), Channel.value(params.dispatcherURL))
- SAYHELLOINSEVERALLANGUAGES.out | splitText | view
+
+    SAYHELLOINSEVERALLANGUAGES(Channel.fromPath 'welcome.txt')
+    SAYHELLOINSEVERALLANGUAGES.out | splitText | view
 }
 
 workflow.onComplete {

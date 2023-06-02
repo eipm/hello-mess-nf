@@ -7,9 +7,8 @@
 # data: the data for the payload.
 #   format of data: "name1":"value1","name2":"value2","name3":"value3"
 ##
-postURL=$1
-topic=$2
-shift 2
+topic=$1
+shift 1
 data=$@
 
 post_data() {
@@ -27,5 +26,5 @@ if [[ "${BASH_MESSAGING_ENABLED}" == "true" ]]; then
     curl --header "Content-Type: text/plain" \
         --request POST \
          --data "$(post_data)"\
-         ${postURL}/${topic}
+         ${DISPATCHER_URL}/${topic}
 fi
