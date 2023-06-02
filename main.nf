@@ -50,7 +50,10 @@ workflow {
         .data('message', 'Hope it works').send()
  SAYHELLOINSEVERALLANGUAGES(Channel.fromPath('welcome.txt'), Channel.value(params.dispatcherURL))
  SAYHELLOINSEVERALLANGUAGES.out | splitText | view
- PipelineMessage.completed(workflow).forTopic("pipelineEvents")
-         .data('message', 'it worked!').send()
 }
 
+workflow.onComplete {
+    log.info "Pipeline completed at: $workflow.complete"
+    PipelineMessage.completed(workflow).forTopic("pipelineEvents")
+             .data('exit status', ${workflow.success ? 'OK' : 'Failed'}).send()
+}
