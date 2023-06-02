@@ -46,11 +46,11 @@ workflow SAYHELLOINSEVERALLANGUAGES {
 }
 
 workflow {
- PipelineMessage.started(workflow).forTopic("pipeline_hello_mess_nf")
+ PipelineMessage.started(workflow).forTopic("pipelineEvents")
         .data('message', 'Hope it works').send()
  SAYHELLOINSEVERALLANGUAGES(Channel.fromPath('welcome.txt'), Channel.value(params.dispatcherURL))
  SAYHELLOINSEVERALLANGUAGES.out | splitText | view
- PipelineMessage.completed(workflow).forTopic("pipeline_hello_mess_nf")
+ PipelineMessage.completed(workflow).forTopic("pipelineEvents")
          .data('message', 'it worked!').send()
 }
 

@@ -1,8 +1,8 @@
 import edu.cornell.eipm.messaging.zeromess.messages.*
 
 process SAYHELLOINITALIAN {
-    beforeScript ProcessMessage.started('SAYHELLOINITALIAN').forTopic('beforeProcess').buildCommand()
-    afterScript ProcessMessage.completed('SAYHELLOINITALIAN').forTopic('afterProcess').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINITALIAN').forTopic('processEvents').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINITALIAN').forTopic('processEvents').buildCommand()
 
     input:
         path (previous_file)
@@ -16,8 +16,8 @@ process SAYHELLOINITALIAN {
 }
 
 process SAYHELLOINFRENCH {
-    beforeScript ProcessMessage.started('SAYHELLOINFRENCH').forTopic('beforeProcess').buildCommand()
-    afterScript ProcessMessage.completed('SAYHELLOINFRENCH').forTopic('afterProcess').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINFRENCH').forTopic('processEvents').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINFRENCH').forTopic('processEvents').buildCommand()
 
     input:
         path (previous_file)
@@ -31,8 +31,8 @@ process SAYHELLOINFRENCH {
 }
 
 process SAYHELLOINSPANISH {
-    beforeScript ProcessMessage.started('SAYHELLOINSPANISH').forTopic('beforeProcess').buildCommand()
-    afterScript ProcessMessage.completed('SAYHELLOINSPANISH').forTopic('afterProcess').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINSPANISH').forTopic('processEvents').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINSPANISH').forTopic('processEvents').buildCommand()
 
     input:
         path (previous_file)
@@ -46,8 +46,8 @@ process SAYHELLOINSPANISH {
 }
 
 process SAYHELLOINENGLISH {
-    beforeScript ProcessMessage.started('SAYHELLOINENGLISH').forTopic('beforeProcess').buildCommand()
-    afterScript ProcessMessage.completed('SAYHELLOINENGLISH').forTopic('afterProcess').buildCommand()
+    beforeScript ProcessMessage.started('SAYHELLOINENGLISH').forTopic('processEvents').buildCommand()
+    afterScript ProcessMessage.completed('SAYHELLOINENGLISH').forTopic('processEvents').buildCommand()
 
     input:
         path (previous_file)
