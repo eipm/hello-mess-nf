@@ -45,8 +45,8 @@ workflow {
     PipelineMessage.started(workflow).forTopic("pipelineEvents")
         .data('message', 'Hope it works').send()
 
-    SAYHELLOINSEVERALLANGUAGES(Channel.fromPath 'welcome.txt')
-    SAYHELLOINSEVERALLANGUAGES.out | splitText | view
+    SAYHELLOINSEVERALLANGUAGES(Channel.fromPath('welcome.txt'))
+    SAYHELLOINSEVERALLANGUAGES.out | splitText() | view()
 }
 
 workflow.onComplete {
